@@ -9,10 +9,12 @@ interface FormProps {
 
 const UploadDocumentForm = ({ handleCancel }: FormProps) => {
   const [importName, setImportName] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
 
   const handleFormSubmit = () => {
     const formData = {
       importName,
+      file,
     };
 
     console.log(formData);
@@ -20,13 +22,15 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
 
   return (
     <div className="sm:mx-5 my-5 h-full">
-      <section className="sm:w-fit sm:m-auto ">
-        <h2 className="text-center font-sans font-medium text-2xl sm:text-3xl">
-          Document Upload
-        </h2>
-        <hr className="bg-slate-700 w-full mt-2" />
-        <FormBody setImportName={setImportName} />
-        <section className="sm:p-8">
+      <section className="">
+        <div className="sm:w-fit sm:m-auto">
+          <h2 className="text-center font-sans font-medium text-2xl sm:text-3xl">
+            Document Upload
+          </h2>
+          <hr className="bg-slate-700 w-full mt-2" />
+        </div>
+        <FormBody setImportName={setImportName} setFile={setFile} />
+        <section className="mt-6 sm:p-8">
           <p className="text-center text-xs sm:text-sm font-semibold">
             "Data in the import file is correct. Please press Continue to
             import."
@@ -35,13 +39,13 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
             <Button
               label="Continue Import"
               onClick={handleFormSubmit}
-              className="w-full"
+              className="w-full sm:w-64"
             />
             <Button
               label="Cancel"
               type="outline"
               onClick={handleCancel}
-              className="w-full"
+              className="w-full sm:w-64"
             />
           </div>
         </section>

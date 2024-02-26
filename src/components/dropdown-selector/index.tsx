@@ -27,7 +27,7 @@ const Dropdown = ({
   };
 
   return (
-    <div className="border-2 pr-2 rounded-lg m-2 overflow-hidden">
+    <div className="border-2 pr-2 rounded-lg m-2 sm:m-0 overflow-hidden">
       <select
         value={selectedValue || ""}
         onChange={handleSelect}
