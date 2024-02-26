@@ -12,12 +12,17 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [isToleranceWindowOn, setIsToleranceWindowOn] =
     useState<boolean>(false);
+  const [enableSplitSchedule, setEnableSplitSchedule] =
+    useState<boolean>(false);
+  const [client, setClient] = useState<string>("Single");
 
   const handleFormSubmit = () => {
     const formData = {
       importName,
       file,
       isToleranceWindowOn,
+      enableSplitSchedule,
+      client,
     };
 
     console.log(formData);
@@ -25,7 +30,7 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
 
   return (
     <div className="sm:mx-5 my-5 h-full">
-      <section className="">
+      <section>
         <div className="sm:w-fit sm:m-auto">
           <h2 className="text-center font-sans font-medium text-2xl sm:text-3xl">
             Document Upload
@@ -36,6 +41,8 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
           setImportName={setImportName}
           setFile={setFile}
           setToleranceWindow={setIsToleranceWindowOn}
+          setSplitSchedule={setEnableSplitSchedule}
+          setClient={setClient}
         />
         <section className="mt-6 sm:p-8">
           <p className="text-center text-xs sm:text-sm font-semibold">

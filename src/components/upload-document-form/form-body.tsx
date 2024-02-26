@@ -1,6 +1,7 @@
 import Dropdown from "../dropdown-selector";
 import FileDrop from "../drag-and-drop-file";
 import ToggleSwitch from "../toggle-switch";
+import RadioButton from "../radio-button";
 
 import ClockIcon from "../../icons/clock-icon";
 
@@ -10,12 +11,16 @@ interface FormBodyProps {
   setImportName: SetStateAction<string | null>;
   setFile: SetStateAction<File | null>;
   setToleranceWindow: SetStateAction<boolean>;
+  setSplitSchedule: SetStateAction<boolean>;
+  setClient: SetStateAction<string>;
 }
 
 const FormBody = ({
   setImportName,
   setFile,
   setToleranceWindow,
+  setSplitSchedule,
+  setClient,
 }: FormBodyProps) => {
   const handleDragAndDropFile = (file: File) => {
     setFile(file);
@@ -23,6 +28,15 @@ const FormBody = ({
 
   const handleToggleToleranceWindow = (value: boolean) => {
     setToleranceWindow(value);
+  };
+
+  const handleSelectorSplitSchedule = (value: string) => {
+    const isSplitScheduleEnable = value === "Yes";
+    setSplitSchedule(isSplitScheduleEnable);
+  };
+
+  const handleClientSelector = (value: string) => {
+    setClient(value);
   };
 
   return (
@@ -65,7 +79,39 @@ const FormBody = ({
           </div>
         </div>
       </section>
-      <section className="h-full sm:p-6 sm:py-2 lg:w-1/2"></section>
+      <section className="text-center sm:text-left h-full lg:w-1/2 mt-6 sm:px-10 sm:mt-0">
+        <div>
+          <h3 className="text-xs font-semibold">
+            Split schedule using social distancing?
+          </h3>
+          <RadioButton
+            value="Yes"
+            onChange={handleSelectorSplitSchedule}
+            options={[
+              { value: "Yes", label: "Yes" },
+              { value: "No", label: "No" },
+            ]}
+          />
+        </div>
+        <hr className="bg-slate-700 sm:w-2/3 mt-4" />
+        <div className="my-2 py-2">
+          <h3 className="text-xs font-semibold">Location Available: </h3>
+          <p className="text-xs text-green mt-1">All Available!</p>
+        </div>
+        <hr className="bg-slate-700 sm:w-2/3" />
+        <div className="mt-4">
+          <h3 className="text-xs font-semibold">Client:</h3>
+          <RadioButton
+            name=""
+            value="Single"
+            onChange={handleClientSelector}
+            options={[
+              { value: "Single", label: "Single" },
+              { value: "Multiple", label: "Multiple" },
+            ]}
+          />
+        </div>
+      </section>
     </section>
   );
 };
