@@ -10,11 +10,14 @@ interface FormProps {
 const UploadDocumentForm = ({ handleCancel }: FormProps) => {
   const [importName, setImportName] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [isToleranceWindowOn, setIsToleranceWindowOn] =
+    useState<boolean>(false);
 
   const handleFormSubmit = () => {
     const formData = {
       importName,
       file,
+      isToleranceWindowOn,
     };
 
     console.log(formData);
@@ -29,11 +32,15 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
           </h2>
           <hr className="bg-slate-700 w-full mt-2" />
         </div>
-        <FormBody setImportName={setImportName} setFile={setFile} />
+        <FormBody
+          setImportName={setImportName}
+          setFile={setFile}
+          setToleranceWindow={setIsToleranceWindowOn}
+        />
         <section className="mt-6 sm:p-8">
           <p className="text-center text-xs sm:text-sm font-semibold">
-            "Data in the import file is correct. Please press Continue to
-            import."
+            {file &&
+              "Data in the import file is correct. Please press Continue to import."}
           </p>
           <div className="flex justify-center space-x-1 sm:space-x-5 p-5">
             <Button
