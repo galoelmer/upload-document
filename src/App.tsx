@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Modal from "./components/modal";
 import Button from "./components/button";
+import Form from "./components/upload-document-form";
 
 import "./App.css";
 
@@ -23,7 +24,9 @@ function App() {
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
         modalWidth="lg"
-      ></Modal>
+      >
+        <Form handleCancel={handleCloseModal} />
+      </Modal>
     </main>
   );
 }

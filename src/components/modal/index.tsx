@@ -21,7 +21,7 @@ const Modal = ({
   if (!isModalOpen) return null;
 
   return (
-    <div className="fixed -inset-x-8 inset-2 z-50 flex justify-center min-w-[375px] sm:inset-10">
+    <div className="fixed -inset-x-8 inset-2 z-50 flex justify-center sm:inset-10">
       <div className="fixed inset-0 bg-black opacity-30"></div>
       <div
         className={`relative z-50 bg-slate-50 p-8 rounded-xl max-w-screen-lg shadow-md overflow-hidden ${classNames} `}
