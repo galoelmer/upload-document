@@ -3,6 +3,8 @@ import { useState } from "react";
 import Button from "../button";
 import FormBody from "./form-body";
 
+import { ITestCenterClient } from "../test-center-selection";
+
 interface FormProps {
   handleCancel: () => void;
 }
@@ -15,6 +17,7 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
   const [enableSplitSchedule, setEnableSplitSchedule] =
     useState<boolean>(false);
   const [client, setClient] = useState<string>("Single");
+  const [testingCenters, setTestingCenters] = useState<ITestCenterClient[]>([]);
 
   const handleFormSubmit = () => {
     const formData = {
@@ -23,6 +26,7 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
       isToleranceWindowOn,
       enableSplitSchedule,
       client,
+      testingCenters,
     };
 
     console.log(formData);
@@ -43,6 +47,7 @@ const UploadDocumentForm = ({ handleCancel }: FormProps) => {
           setToleranceWindow={setIsToleranceWindowOn}
           setSplitSchedule={setEnableSplitSchedule}
           setClient={setClient}
+          setTestingCenters={setTestingCenters}
         />
         <section className="mt-6 sm:p-8">
           <p className="text-center text-xs sm:text-sm font-semibold">

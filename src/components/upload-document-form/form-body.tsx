@@ -2,8 +2,11 @@ import Dropdown from "../dropdown-selector";
 import FileDrop from "../drag-and-drop-file";
 import ToggleSwitch from "../toggle-switch";
 import RadioButton from "../radio-button";
+import TestCenterSelection from "../test-center-selection";
 
 import ClockIcon from "../../icons/clock-icon";
+
+import { ITestCenterClient } from "../test-center-selection";
 
 type SetStateAction<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -13,6 +16,7 @@ interface FormBodyProps {
   setToleranceWindow: SetStateAction<boolean>;
   setSplitSchedule: SetStateAction<boolean>;
   setClient: SetStateAction<string>;
+  setTestingCenters: SetStateAction<ITestCenterClient[]>;
 }
 
 const FormBody = ({
@@ -21,6 +25,7 @@ const FormBody = ({
   setToleranceWindow,
   setSplitSchedule,
   setClient,
+  setTestingCenters,
 }: FormBodyProps) => {
   const handleDragAndDropFile = (file: File) => {
     setFile(file);
@@ -64,7 +69,7 @@ const FormBody = ({
         <hr className="bg-slate-700 sm:w-2/3 mt-2" />
         <div className="mt-4">
           <h3 className="text-xs font-semibold">Tolerance Window: </h3>
-          <div className="flex mt-2">
+          <div className="flex justify-center sm:justify-start mt-2">
             <ToggleSwitch
               label="Toggle ON"
               onChange={handleToggleToleranceWindow}
@@ -110,6 +115,9 @@ const FormBody = ({
               { value: "Multiple", label: "Multiple" },
             ]}
           />
+        </div>
+        <div>
+          <TestCenterSelection setTestingCenters={setTestingCenters} />
         </div>
       </section>
     </section>
