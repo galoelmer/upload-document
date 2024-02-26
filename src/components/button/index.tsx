@@ -30,7 +30,7 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      className={`${classNames} ${className}  min-w-40 h-10`}
+      className={`sm:min-w-40 sm:h-10 ${classNames} ${className}`}
     >
       {label}
     </button>
